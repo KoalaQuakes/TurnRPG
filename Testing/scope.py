@@ -1,4 +1,5 @@
 class Monster:
+    '''this is where we set the details of what the monster class is supposed to do'''
     def __init__(self,health,energy,mana,**kwargs):
         self.health = health
         self.energy = energy
@@ -95,3 +96,19 @@ class Shark2(Monster, Fish):
 
 shark2 = Shark2(bite_strength = 50, health = 50, energy = 50, mana = 5, speed = 20, has_scales = False)
 print(shark2.has_scales)
+
+# help(monster) # to print useful info about the object
+# print(monster.__doc__)
+
+# private attributes are not possible in python. use one underscore to inform devs _ID
+#hasattr(object,'attribute')
+hasattr(monster, 'health')
+#setattr(object,'attribute', new_value)
+
+setattr(monster,'weapon', 'Sword')
+
+new_attributes = (['weapon', 'axe'],['armor','shield'],['potion','magic'])
+for attr,value in new_attributes:
+    setattr(monster,attr,value)
+
+print(vars(monster))
