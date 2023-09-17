@@ -1,8 +1,9 @@
 class Monster:
-    def __init__(self,health,energy,mana):
+    def __init__(self,health,energy,mana,**kwargs):
         self.health = health
         self.energy = energy
         self.set_mana(mana)
+        super().__init__(**kwargs)
 
     def udpate_energy(self,amount):
         self.energy += amount
@@ -74,3 +75,23 @@ class Scorpion(Monster):
 scorpion = Scorpion(poison = 50, scorpion_health = 20, scorpion_energy = 75, scorpion_mana = 50)
 scorpion.attack()
 scorpion.move(5)
+
+
+class Fish:
+    def __init__(self,speed,has_scales,**kwargs):
+        self.speed = speed
+        self.has_scales = has_scales
+        super().__init__(**kwargs)
+
+    def swim(self):
+        print(f'the fish is swimming at a speed of {self.speed}')
+
+# working with multiple inheritence
+class Shark2(Monster, Fish):
+    def __init__(self,bite_strength, health, energy, mana, speed, has_scales):
+        self.bite_strength = bite_strength
+        #print(Shark2.mro())
+        super().__init__(health = health, energy = energy, mana = mana, speed = speed, has_scales = has_scales)
+
+shark2 = Shark2(bite_strength = 50, health = 50, energy = 50, mana = 5, speed = 20, has_scales = False)
+print(shark2.has_scales)
